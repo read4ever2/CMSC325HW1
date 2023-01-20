@@ -14,11 +14,11 @@ public class CMSC325HW1 extends JPanel {
     // Call methods to draw
     drawBackground(g);
     drawCircle(g);
-    drawArcs(g);
-    drawCannonBall(g);
     drawMountain(g);
+    drawArcs(g);
     drawCannon(g);
-
+    drawCannonBall(g);
+    drawLand(g);
   }
 
   // Method to draw an Ellipse
@@ -58,8 +58,8 @@ public class CMSC325HW1 extends JPanel {
     mountain.lineTo(210, 80);
     mountain.lineTo(190, 80);
     mountain.closePath();
-    graphics2D.setColor(Color.MAGENTA);
-    graphics2D.setPaint(Color.magenta);
+    graphics2D.setColor(new Color(102, 51, 0));
+    graphics2D.setPaint(new Color(102, 51, 0));
     graphics2D.fill(mountain);
     graphics2D.draw(mountain);
   }
@@ -93,10 +93,43 @@ public class CMSC325HW1 extends JPanel {
     graphics2D.draw(hole);
   }
 
-  private void drawArcs(Graphics g){
-    Graphics2D graphics2D=(Graphics2D) g;
-    Arc2D orbit = new Arc2D.Double(70,70,260,260,180,270,Arc2D.OPEN);
+  private void drawArcs(Graphics g) {
+    Graphics2D graphics2D = (Graphics2D) g;
+    Arc2D orbit = new Arc2D.Double(70, 70, 260, 260, 180, 270, Arc2D.OPEN);
+    Arc2D failQuarter = new Arc2D.Double(100, 70, 200, 250, 0, 90, Arc2D.OPEN);
+    Arc2D failHalf = new Arc2D.Double(110, 70, 200, 230, 270, 180, Arc2D.OPEN);
     graphics2D.setPaint(Color.white);
     graphics2D.draw(orbit);
+    graphics2D.draw(failQuarter);
+    graphics2D.draw(failHalf);
+  }
+
+  private void drawLand(Graphics g) {
+    Graphics2D graphics2D = (Graphics2D) g;
+    int[] x1Points = {210, 240, 260, 220, 220, 200};
+    int[] y1Points = {200, 200, 220, 290, 230, 210};
+    GeneralPath sAmerica = new GeneralPath(GeneralPath.WIND_EVEN_ODD, x1Points.length);
+    sAmerica.moveTo(x1Points[0], y1Points[0]);
+    for (int index = 1; index < x1Points.length; index++) {
+      sAmerica.lineTo(x1Points[index], y1Points[index]);
+    }
+    sAmerica.closePath();
+
+    int[] x2Points = {210, 155, 150, 175, 200, 230, 250, 225, 230, 200, 190};
+    int[] y2Points = {200, 180, 130, 105, 120, 108, 120, 165, 180, 170, 180,};
+
+    GeneralPath nAmerica = new GeneralPath(GeneralPath.WIND_EVEN_ODD, x2Points.length);
+    nAmerica.moveTo(x2Points[0], y2Points[0]);
+
+    for (int index = 1; index < x2Points.length; index++) {
+      nAmerica.lineTo(x2Points[index], y2Points[index]);
+    }
+    nAmerica.closePath();
+    Color darkGreen = new Color(0, 100, 0);
+    graphics2D.setPaint(darkGreen);
+    graphics2D.fill(sAmerica);
+    graphics2D.draw(sAmerica);
+    graphics2D.fill(nAmerica);
+    graphics2D.draw(nAmerica);
   }
 }
