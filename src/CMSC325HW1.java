@@ -57,7 +57,7 @@ public class CMSC325HW1 extends JPanel {
   private void drawCannonBall(Graphics g) {
     Graphics2D g2d = (Graphics2D) g;
     Ellipse2D cannonBall = new Ellipse2D.Double(60, 190, 20, 20);
-    GradientPaint blackToGrey = new GradientPaint(0, 0, Color.darkGray, 100, 0, Color.lightGray);
+    GradientPaint blackToGrey = new GradientPaint(60, 190, Color.black, 80, 210, Color.lightGray);
     g2d.setPaint(blackToGrey);
     g2d.fill(cannonBall);
     g2d.draw(cannonBall);
